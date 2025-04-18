@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SnackbarComponent } from './shared/snackbar/components/snackbar/snackbar.component';
+import { SnackbarComponent } from '@snackbar/components/snackbar/snackbar.component';
 
 @Component({
     selector: 'app-root',
@@ -8,6 +8,4 @@ import { SnackbarComponent } from './shared/snackbar/components/snackbar/snackba
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
 })
-export class AppComponent {
-    title = 'erros';
-}
+export class AppComponent {}
