@@ -1,0 +1,18 @@
+<div class="snackbar-container">
+    @for (message of messages(); track message.id) {
+        <div class="snackbar-message" [class]="message.type.type">
+            <div class="message-icon">
+                <img
+                    [src]="'img/' + message.type.icon"
+                    alt="ícone do snackbar"
+                />
+            </div>
+            <div class="message-content">
+                {{ message.message }}
+            </div>
+            <button class="close-button" (click)="removeMessage(message.id)">
+                ×
+            </button>
+        </div>
+    }
+</div>
