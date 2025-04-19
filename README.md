@@ -23,19 +23,20 @@ src/
 │   ├── core/
 │   │   ├── error/
 │   │   │   ├── interceptors/
-│   │   │   │   └── error.interceptor.ts
+│   │   │   │   └── http-error.interceptor.ts
 │   │   │   ├── handlers/
-│   │   │   │   └── global-error-handler.ts
+│   │   │   │   └── global-error.handler.ts
 │   │   │   ├── services/
-│   │   │   │   ├── logging.service.ts
+│   │   │   │   ├── log.service.ts
 │   │   │   │   ├── notification.service.ts
 │   │   │   │   └── offline.service.ts
-│   │   │   └── error.providers.ts
 │   ├── shared/
-│   │   └── ui/
-│   │       └── snackbar/
-│   │           ├── snackbar.service.ts
-│   │           └── snackbar.component.ts
+│   │   └── snackbar/
+│   │   │   ├── components/
+│   │   │   │   ├── snackbar.component.html
+│   │   │   │   ├── snackbar.component.ts
+│   │   │   ├── services/
+│   │   │   │   ├── snackbar.service.ts
 ```
 
 ---
@@ -50,9 +51,8 @@ src/
 
 ### ✅ ErrorHandler Global
 
-- Captura erros de:
+- Captura erros não-HTTP como:
   - exceções em componentes
-  - promessas rejeitadas
   - eventos de usuário
   - operações RxJS sem `catchError`
 
@@ -66,7 +66,6 @@ src/
 
 - Só começa a fazer “ping” após detectar um erro de rede (status `0`)
 - Para o ping assim que o servidor responder e os erros forem sincronizados
-- Totalmente desacoplado do interceptor
 
 ---
 
@@ -76,10 +75,10 @@ src/
 
 API simples com os seguintes endpoints:
 
-- `GET /api/ping` – Usado pelo frontend para checar se o servidor está online
-- `POST /api/logs/error` – Recebe logs individuais
-- `POST /api/logs/batch` – Recebe logs armazenados localmente em lote
-- `GET /api/errors/x` – Simula erros
+- `GET /api/v1/health` – Usado pelo frontend para checar se o servidor está online
+- `POST /api/v1/errorlog` – Recebe logs individuais
+- `POST /api/v1/errorlog/bulk` – Recebe logs armazenados localmente em lote
+- `GET /api/v1/test/x` – Simula erros
 
 ---
 
