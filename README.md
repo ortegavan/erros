@@ -117,7 +117,7 @@ dotnet run
 
 Esse projeto foi cuidadosamente estruturado para resolver um problema real: **como lidar com erros de forma elegante, completa e resiliente no Angular**, sem reinventar a roda e sem sobrecarregar a experiência do usuário.
 
-Desenvolvido com ❤️ por [Vanessa Ortega](https://github.com/vanessaortega)  
+Desenvolvido com ❤️ por [Vanessa Ortega](https://github.com/ortegavan)  
 Orientado por muita prática, tentativa e uma pitada de perfeccionismo 🧪✨
 
 ---
