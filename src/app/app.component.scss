@@ -1,0 +1,18 @@
+.tests {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    button {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+        padding: 6px 0;
+        background-color: #a6b9f9;
+        border: none;
+        border-radius: 6px;
+        font-family: "Outfit", sans-serif;
+        font-size: 14px;
+    }
+}
