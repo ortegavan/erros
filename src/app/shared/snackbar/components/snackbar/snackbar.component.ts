@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SnackbarService } from '../../services/snackbar.service';
 
 @Component({
@@ -9,7 +9,6 @@ import { SnackbarService } from '../../services/snackbar.service';
 })
 export class SnackbarComponent {
     snackbarService = inject(SnackbarService);
-    cdr = inject(ChangeDetectorRef);
 
     messages = this.snackbarService.messages;
 
