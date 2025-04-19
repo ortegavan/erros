@@ -4,11 +4,21 @@ import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { LogService } from '../services/log.service';
 import { catchError, EMPTY, retry, throwError, timer } from 'rxjs';
+import {
+    IGNORE_ERROR_INTERCEPTOR,
+    OfflineService,
+} from '../services/offline.service';
 
 export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
     const router = inject(Router);
     const notificationService = inject(NotificationService);
     const logService = inject(LogService);
+    const offlineService = inject(OfflineService);
+    const shouldIgnore = req.context.get(IGNORE_ERROR_INTERCEPTOR);
+
+    if (shouldIgnore) {
+        return next(req);
+    }
 
     return next(req).pipe(
         retry({
@@ -31,7 +41,17 @@ export const httpErrorInterceptor: HttpInterceptorFn = (req, next) => {
             if (error instanceof HttpErrorResponse) {
                 switch (error.status) {
                     case 0:
-                        // TODO: Handle network error
+                        offlineService.log({
+                            message: error.message,
+                            stack: error.error?.stack || 'No stack trace',
+                            url: req.url,
+                            status: error.status,
+                            timestamp: new Date().toISOString(),
+                        });
+
+                        notificationService.showError(
+                            'Servidor indisponível. Tente novamente em alguns minutos.',
+                        );
                         break;
 
                     case 401:
